@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Registro de quejas - Coppel
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- CSS only -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+  <!--
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+-->
+	<style>
+      @import url('https://fonts.cdnfonts.com/css/circular-std');
+    </style>
+
+    <link rel="shortcut icon" href="https://www.coppel.com/wcsstore/CoppelStoreFrontAssetStore/images/icon-favicon.ico" mce_href="https://www.coppel.com/wcsstore/CoppelStoreFrontAssetStore/images/icon-favicon.ico">
+		
+	<link href="css/slds-lexcontainer.css" rel="stylesheet">
+	
+<!--
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+      </style>
+-->
+    <style type="text/css"> 
+      html,body{width:100%;height:100%; background-color: #f5f5f5;font-family:'Circular Std' !important;}
+	  
+.spinner-wrapper {
+  width: 100px;
+  height: 100px;
+
+  position: relative;
+  margin: 100px auto;
+}
+
+.spinner-text {
+  position:absolute;
+  top: 60px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  
+  position: relative;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #2066b0;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+	        
+    </style>
+  </head>
+  <body>
+
+    <nav role="navigation" class="navbar navbar-light" style="background-color: #FFE86F;">
+      <a href="https://www.coppel.com" class="navbar-brand">
+        <img src="https://www.coppel.com/images/emarketing/logo_80aniv2.png" style="width: 80px; background-color: yellow;"> Registro de quejas - Coppel
+       </a>
+    </nav> 
+
+<div class="container">
+  <div class="row">
+    <dir class="col">
+      <div id="lexcontainer" class="cCasePublic">
+		<div class="spinner-wrapper">
+			<div class="spinner">
+			  <div class="double-bounce1"></div>
+			  <div class="double-bounce2"></div>
+			  <div class="spinner-text">Cargando información...</div>
+			</div>
+		</div>
+	</div>
+    </dir>
+  </div>
+</div>
+  
+         
+  </body>
+  <script src="https://dev0-coppel.cs166.force.com/quejaspublic/lightning/lightning.out.js"></script>
+  <!--<script type="text/javascript" src="lib/jquery.js">  </script>
+  <script type="text/javascript" src="lib/jqueryCookies.js"> </script> -->
+
+  <script> 
+    var _lightningReady = false;
+    createChatterFeed();
+
+    function setupLightning(callback) {
+      var appName = "c:CasePublic";
+      
+      if (_lightningReady) {
+        if (typeof callback === "function") {
+          callback();
+        }
+      } else {
+        var url = "https://dev0-coppel.cs166.force.com/quejaspublic";
+
+        $Lightning.use(
+          appName, 
+          function() {
+            _lightningReady = true;
+			document.getElementById("lexcontainer").innerHTML = "";
+            document.getElementById("lexcontainer").style.display = "";
+            if (typeof callback === "function") {
+              callback();
+            }
+          },
+          url
+        );
+      }
+    }
+
+    function createChatterFeed() {
+      setupLightning(function() {
+        $Lightning.createComponent("c:casePublicCmp", {origin: '1a07afe7fc2c54d466d12569f05fb391'}, "lexcontainer");
+      });
+    }
+  </script>
+</html> 
